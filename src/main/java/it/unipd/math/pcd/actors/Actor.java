@@ -37,6 +37,8 @@
  */
 package it.unipd.math.pcd.actors;
 
+import it.unipd.math.pcd.actors.exceptions.UnsupportedMessageException;
+
 /**
  * An actor in the <code>pcd-actor</code> system that receives
  * messages of a defined type.
@@ -54,5 +56,5 @@ public interface Actor<T extends Message> {
      * @throws it.unipd.math.pcd.actors.exceptions.UnsupportedMessageException If the message is not supported by
      *         the actor.
      */
-    void receive(T message);
+    void receive(T message) throws UnsupportedMessageException;
 }

@@ -42,8 +42,9 @@ import it.unipd.math.pcd.actors.utils.actors.TrivialActor;
 import it.unipd.math.pcd.actors.utils.actors.counter.CounterActor;
 import it.unipd.math.pcd.actors.utils.actors.ping.pong.PingPongActor;
 import it.unipd.math.pcd.actors.utils.actors.StoreActor;
+import it.unipd.math.pcd.actors.utils.messages.counter.*;
 import it.unipd.math.pcd.actors.utils.messages.StoreMessage;
-import it.unipd.math.pcd.actors.utils.messages.counter.Increment;
+
 import it.unipd.math.pcd.actors.utils.messages.ping.pong.PingMessage;
 import org.junit.Assert;
 import org.junit.Before;
@@ -75,7 +76,7 @@ public class ActorIT {
         // Send a string to the actor
         ref.send(new StoreMessage("Hello World"), ref);
         // Wait that the message is processed
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         // Verify that the message is been processed
         Assert.assertEquals("The message has to be received by the actor", "Hello World", actor.getData());
     }
@@ -99,7 +100,7 @@ public class ActorIT {
     }
 
     @Test
-    public void shouldNotLooseAnyMessage() throws InterruptedException {
+    public void shouldNotLoseAnyMessage() throws InterruptedException {
         TestActorRef counter = new TestActorRef(system.actorOf(CounterActor.class));
         for (int i = 0; i < 200; i++) {
             TestActorRef adder = new TestActorRef(system.actorOf(TrivialActor.class));

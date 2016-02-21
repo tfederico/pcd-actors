@@ -39,6 +39,7 @@ package it.unipd.math.pcd.actors;
 
 import it.unipd.math.pcd.actors.exceptions.NoSuchActorException;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -53,7 +54,22 @@ public abstract class AbsActorSystem implements ActorSystem {
     /**
      * Associates every Actor created with an identifier.
      */
-    private Map<ActorRef<?>, Actor<?>> actors;
+    protected Map<ActorRef<?>, Actor<?>> actors;
+
+    /**
+     * The constructor creates a map for the actors,
+     * using their ActorRef as keys
+     */
+    public AbsActorSystem(){
+        actors = new HashMap<>();
+    }
+
+    /**
+     *
+     * @param actor The type of actor that has to be created
+     * @param mode The mode of the actor requested
+     * @return ActorRef The ActorRef to the Actor
+     */
 
     @Override
     public ActorRef<? extends Message> actorOf(Class<? extends Actor> actor, ActorMode mode) {
@@ -74,10 +90,37 @@ public abstract class AbsActorSystem implements ActorSystem {
         return reference;
     }
 
+    /**
+     *
+     * @param actor The type of actor that has to be created
+     * @return ActorRef An ActorRef to the Actor (which can only be local)
+     */
+
     @Override
     public ActorRef<? extends Message> actorOf(Class<? extends Actor> actor) {
         return this.actorOf(actor, ActorMode.LOCAL);
     }
 
     protected abstract ActorRef createActorReference(ActorMode mode);
+
+    /**
+     * This method returns the Actor associated with ActorRef ref
+     * @param ref An ActorRef
+     * @return Actor Returns the actor which has ActorRef as key
+     * @throws NoSuchActorException
+     */
+
+    public Actor<?> findActor(ActorRef<?> ref) throws NoSuchActorException{
+        Actor act = actors.get(ref);
+        if(act != null)
+            return act;
+        else
+            throw new NoSuchActorException();
+    }
+
+    /**
+     * This method will take a runnable and it will execute it
+     * @param r
+     */
+    public abstract void systemExecute(Runnable r);
 }

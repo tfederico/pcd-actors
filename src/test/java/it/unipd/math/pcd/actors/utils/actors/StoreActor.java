@@ -38,6 +38,7 @@
 package it.unipd.math.pcd.actors.utils.actors;
 
 import it.unipd.math.pcd.actors.AbsActor;
+import it.unipd.math.pcd.actors.exceptions.UnsupportedMessageException;
 import it.unipd.math.pcd.actors.utils.messages.StoreMessage;
 
 /**
@@ -52,7 +53,7 @@ public class StoreActor extends AbsActor<StoreMessage> {
     private String data;
 
     @Override
-    public void receive(StoreMessage message) {
+    public void receive(StoreMessage message) throws UnsupportedMessageException {
         this.data = message.getPayload();
     }
 

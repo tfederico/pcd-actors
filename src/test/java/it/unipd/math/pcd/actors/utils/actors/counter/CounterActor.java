@@ -38,6 +38,7 @@
 package it.unipd.math.pcd.actors.utils.actors.counter;
 
 import it.unipd.math.pcd.actors.AbsActor;
+import it.unipd.math.pcd.actors.exceptions.UnsupportedMessageException;
 import it.unipd.math.pcd.actors.utils.messages.counter.*;
 
 /**
@@ -52,7 +53,7 @@ public class CounterActor extends AbsActor<CounterMessage> {
     private int counter = 0;
 
     @Override
-    public void receive(CounterMessage message) {
+    public void receive(CounterMessage message) throws UnsupportedMessageException{
         if (message instanceof Increment) {
             counter++;
         } else if (message instanceof Decrement) {

@@ -38,6 +38,7 @@
 package it.unipd.math.pcd.actors.utils.actors;
 
 import it.unipd.math.pcd.actors.AbsActor;
+import it.unipd.math.pcd.actors.exceptions.UnsupportedMessageException;
 import it.unipd.math.pcd.actors.utils.messages.TrivialMessage;
 
 /**
@@ -49,7 +50,7 @@ import it.unipd.math.pcd.actors.utils.messages.TrivialMessage;
  */
 public class TrivialActor extends AbsActor<TrivialMessage> {
     @Override
-    public void receive(TrivialMessage message) {
+    public void receive(TrivialMessage message) throws UnsupportedMessageException {
         // Do nothing.
     }
 }

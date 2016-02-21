@@ -76,6 +76,7 @@ public class ActorSystemTest {
         Assert.assertNotNull("A reference to a local actor was created and it is not null", ref);
     }
 
+
     /**
      * It is not requested to implement remote mode for actors anymore. So, an attempt to create a remote
      * actor should rise an {@link IllegalArgumentException}
@@ -84,6 +85,7 @@ public class ActorSystemTest {
     public void shouldCreateAnActorRefOfWithActorModeRemoteTest() {
         system.actorOf(TrivialActor.class, ActorSystem.ActorMode.REMOTE);
     }
+
 
     @Test
     public void shouldBeAbleToCreateMoreThanOneActor() {

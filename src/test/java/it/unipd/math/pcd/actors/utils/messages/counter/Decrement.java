@@ -44,4 +44,4 @@ package it.unipd.math.pcd.actors.utils.messages.counter;
  * @version 1.0
  * @since 1.0
  */
-public class Decrement extends CounterMessage {}
+public class Decrement extends it.unipd.math.pcd.actors.utils.messages.counter.CounterMessage {}

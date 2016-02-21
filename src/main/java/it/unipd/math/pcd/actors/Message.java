@@ -44,5 +44,4 @@ package it.unipd.math.pcd.actors;
  * @version 1.0
  * @since 1.0
  */
-public interface Message {
-}
+public interface Message {}
